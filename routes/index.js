@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
       image:"https://i.gadgets360cdn.com/products/large/oneplus-7t-pro-386x800-1570722452.jpg"
     }
   ]
-  res.render('index', { products });
+  res.render('index', { products,admin:false });
 });
 
 module.exports = router;
