@@ -27,9 +27,9 @@ router.get('/', function(req, res, next) {
       category:"Mobile",
       description:"The 7T Pro is the replacement for the OnePlus 7 Pro. The frosted, matte texture of the OnePlus 7T",
       image:"https://i.gadgets360cdn.com/products/large/oneplus-7t-pro-386x800-1570722452.jpg"
-    },
+    }
   ]
-  res.render('index', {products});
+  res.render('index', { products });
 });
 
 module.exports = router;
