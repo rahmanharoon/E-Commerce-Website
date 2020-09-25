@@ -39,7 +39,16 @@ router.post('/add-product',(req,res)=>{
   console.log(req.body);
   console.log(req.files.Images);
 
-  productHelper.addProduct(req.body,(result)=> {
+  productHelper.addProduct(req.body,(id)=> {
+    let images=req.files.Images
+    console.log(id);
+    images.mv('./public/product-images/'+id+'.jpg',(err,done)=>{
+      if (!err){
+        res.render("admin/add-product")
+      }else{
+        console.log(err);
+      }
+    })
     res.render("admin/add-product")
   })
 })
