@@ -1,6 +1,6 @@
 const { connect } = require('../app')
 
-const mongoClient=require('mongodb').MongoClient
+const MongoClient=require('mongodb').MongoClient
 const state={
     db: null
 }
@@ -12,9 +12,11 @@ module.exports.connect=function(done){
     MongoClient.connect(url, (err,data)=>{
         if (err) return done(err)
         state.db = data.db(dbname)
+
+        done()
     })
 
-    done()
+    
 }
 
 module.exports.get = function(){
