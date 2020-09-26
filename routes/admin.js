@@ -3,9 +3,11 @@ var router = express.Router();
 var productHelper = require("../helpers/product-helpers")
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  productHelper.getAllProducts().then((products)=>{
+    console.log(products);
+    res.render('admin/view-products',{admin:true,products})
+  })
   
-
-  res.render('admin/view-products',{admin:true,products})
 });
 router.get('/add-product',function(req,res){
   res.render('admin/add-product')
