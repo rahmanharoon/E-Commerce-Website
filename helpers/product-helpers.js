@@ -7,7 +7,7 @@ module.exports={
 
         db.get().collection('product').insertOne(product).then((data)=> {
             
-            callback(data.ops[0]._id)
+            callback(data.ops[0]._id) 
 
         })
     },
