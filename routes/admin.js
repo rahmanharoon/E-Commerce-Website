@@ -1,4 +1,5 @@
 var express = require('express');
+const productHelpers = require('../helpers/product-helpers');
 var router = express.Router();
 var productHelper = require("../helpers/product-helpers")
 /* GET users listing. */
@@ -16,7 +17,7 @@ router.post('/add-product',(req,res)=>{
   console.log(req.body);
   console.log(req.files.Images);
 
-  productHelper.addProduct(req.body,(id)=> {
+  productHelpers.addProduct(req.body,(id)=> {
     let images=req.files.Images
     console.log(id);
     images.mv('./public/product-images/'+id+'.jpg',(err,done)=>{
