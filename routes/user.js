@@ -9,4 +9,11 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/login',(req,res)=> {
+  res.render('user/login')
+})
+router.get('createaccount', (req,res)=> {
+  res.render('user/createaccount')
+})
+
 module.exports = router;
