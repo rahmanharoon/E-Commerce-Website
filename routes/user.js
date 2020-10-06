@@ -5,9 +5,10 @@ const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-
+  let user=req.session.user
+  console.log(user);
   productHelpers.getAllProducts().then((products) => {
-    res.render('user/view-products', { products })
+    res.render('user/view-products', { products,user })
   })
 });
 
