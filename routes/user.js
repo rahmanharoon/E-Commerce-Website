@@ -1,4 +1,5 @@
 var express = require('express');
+const { response } = require('../app');
 var router = express.Router();
 const productHelpers = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
@@ -22,7 +23,13 @@ router.post('/signup', (req,res)=> {
   })
 })
 router.post('/login',(req,res)=> {
-  userHelpers.doLogin(req.body)
+  userHelpers.doLogin(req.body).then((response)=> {
+    if(response.status){
+      res.redirect('/')
+    }else {
+      res.redirect('/login')
+    }
+  })
 })
 
 module.exports = router;

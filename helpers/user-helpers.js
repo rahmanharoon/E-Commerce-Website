@@ -25,6 +25,7 @@ module.exports={
                         console.log("Login succes");
                         response.user=user
                         response.status=true
+                        resolve(response)
                     }else{
                         console.log("Login Failed");
                         resolve({status:false})
