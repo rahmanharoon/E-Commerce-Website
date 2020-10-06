@@ -28,7 +28,12 @@
     
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/login">Login</a>
+      {{#if user}}
+        <a class="dropdown-item" href="/logout">Logout</a>
+        {{else}}
+        <a class="dropdown-item" href="/login">Login</a>
+    {{/if}}
+    
     <a class="dropdown-item" href="/signup">Sign Up</a>
   </div>
 </div>
