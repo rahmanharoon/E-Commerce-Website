@@ -25,6 +25,8 @@ router.post('/signup', (req,res)=> {
 router.post('/login',(req,res)=> {
   userHelpers.doLogin(req.body).then((response)=> {
     if(response.status){
+      req.session.loggedIn=true
+      req.session.user=response.user
       res.redirect('/')
     }else {
       res.redirect('/login')
