@@ -14,11 +14,11 @@ router.get('/', function (req, res, next) {
 
 router.get('/login', (req, res) => {
   if(req.session.loggedIn){
-    res.redirect('/home')
+    res.redirect('/')
   }else{
-    res.render('user/login')
+    res.render('user/login',{'loginErr':req.session.loginErr})
+    req.session.loginErr=false
   }
-  res.render('user/login')
 })
 router.get('/signup', (req, res) => {
   res.render('user/signup')
@@ -35,6 +35,7 @@ router.post('/login',(req,res)=> {
       req.session.user=response.user
       res.redirect('/')
     }else {
+      res.session.loginErr="Invalid username or password"
       res.redirect('/login')
     }
   })
