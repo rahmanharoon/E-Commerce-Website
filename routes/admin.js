@@ -1,5 +1,6 @@
-const { response } = require('express');
+const { response, Router } = require('express');
 var express = require('express');
+const { route } = require('../app');
 const productHelpers = require('../helpers/product-helpers');
 var router = express.Router();
 var productHelper = require("../helpers/product-helpers")
@@ -38,5 +39,7 @@ router.get('/delete-product/:id',(req,res)=> {
     res.redirect('/admin/')
   })
 })
-
+router.get('/edit-product/:id',(req,res)=> {
+  res.render('admin/edit-product')
+})
 module.exports = router;
