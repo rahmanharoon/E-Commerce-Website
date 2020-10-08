@@ -39,7 +39,8 @@ router.get('/delete-product/:id',(req,res)=> {
     res.redirect('/admin/')
   })
 })
-router.get('/edit-product/:id',(req,res)=> {
-  res.render('admin/edit-product')
+router.get('/edit-product/:id',async(req,res)=> {
+  let product = productHelpers.getProductDetails(req.params.id)
+  res.render('admin/edit-product',{ product })
 })
 module.exports = router;
