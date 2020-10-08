@@ -5,22 +5,22 @@
 
         <div class="col-md-6">
             <h2 class="text-center">Edit Product</h2>
-            <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+            <form action="/admin/edit-product" method="POST" enctype="multipart/form-data">
                 <label for="">Name</label>
-                <input type="text" name="Name" class="form-control" placeholder="Enter the Item Name" value="{{product.Name}}">
+                <input type="text" name="Name" class="form-control" value="{{product.Name}}" placeholder="Enter the Item Name"> 
 
 
                 <label for="">Category</label>
-                <input type="text" name="Category" class="form-control" placeholder="Enter Product Category" value="{{product.Category}}">
+                <input type="text" name="Category" class="form-control" value="{{product.Category}}" placeholder="Enter Product Category" >
 
                 <label for="">Price</label>
-                <input type="text" name="Price" class="form-control" placeholder="Enter Price of the Product" value="{{product.Price}}">
+                <input type="text" name="Price" class="form-control"  value="{{product.Price}}" placeholder="Enter Price of the Product">
 
                 <label for="">Description</label>
-                <input type="text" name="Description" class="form-control" placeholder="Please give the Specification of the Product" value="{{product.Description}}">
+                <input type="text" name="Description" class="form-control" value="{{product.Description}}" placeholder="Please give the Specification of the Product" >
 
                 <label for="">Image</label>
-                <img src="/public/product-images/{{product._id}}.jpg" style="width: 100px; height: auto;" alt="">
+                <img src="/product-images/{{product._id}}.jpeg" style="width: 100px; height: 100px;" alt="">
                 <input type="file" name="Images" class="form-control">
 
 
