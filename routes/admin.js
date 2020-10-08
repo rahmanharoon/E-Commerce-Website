@@ -30,8 +30,9 @@ router.post('/add-product',(req,res)=>{
     res.render("admin/add-product")
   })
 })
-router.get('/delete-product',(req,res)=> {
-  
+router.get('/delete-product/:id',(req,res)=> {
+  let proId = req.params.id
+  console.log(proId);
 })
 
 module.exports = router;
