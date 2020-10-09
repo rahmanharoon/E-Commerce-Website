@@ -55,5 +55,4 @@ router.post('/edit-product/:id',(req,res)=> {
     }
   })
 })
-
 module.exports = router;
