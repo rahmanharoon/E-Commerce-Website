@@ -44,7 +44,13 @@ module.exports={
         return new Promise (async(resolve,reject)=>{
             let userCart= await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
             if(userCart){
-
+                db.get().collection(collection.CART_COLLECTION).updateOne({user:ObjectId(userId)},
+                {                    
+                        $push:{products:ObjectId(proId)}
+                }
+                ).then((response)=>{
+                    resolve()
+                })
             }else{
                 let cartObj={
                     user:ObjectId(userId),
