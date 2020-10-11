@@ -57,13 +57,13 @@ router.get('/logout',(req,res)=> {
   res.redirect('/')
 })
 router.get('/cart',verifyLogin,async(req,res)=> {
-  let products=await userHelpers.getCartProducts(req.session.user_id)
+  let products=await userHelpers.getCartProducts(req.session.user._id)
   console.log(products);
   res.render('user/cart')
 })
 
 router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
-  userHelpers.addToCart(req.params.id,req.session._id).then(()=>{
+  userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
     res.redirect('/')
   })
 })
