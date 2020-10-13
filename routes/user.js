@@ -67,8 +67,9 @@ router.get('/cart',verifyLogin,async(req,res)=> {
 })
 
 router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
+  console.log('api called');
   userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
-    res.redirect('/')
+    // res.redirect('/')
   })
 })
 
