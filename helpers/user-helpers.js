@@ -49,15 +49,22 @@ module.exports={
             let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
             if(userCart){
                 let proExist = userCart.products.findIndex(product => product.item === proId)
-                console.log();
-                db.get().collection(collection.CART_COLLECTION).
-                updateOne({user:ObjectId(userId)},
-                {                    
-                     $push:{products:proObj}        
-                }
-                ).then((response)=>{
-                    resolve()
-                })
+                 console.log(proExist);
+                 if(proExist != -1){
+                    db.get().collection(collection.CART_COLLECTION).updateOne({'products.item':ObjectId(proId)},
+                    {
+                        $inc:'products.quantity'
+                    }
+                    )
+                 }
+                // db.get().collection(collection.CART_COLLECTION).
+                // updateOne({user:ObjectId(userId)},
+                // {                    
+                //      $push:{products:proObj}        
+                // }
+                // ).then((response)=>{
+                //     resolve()
+                // })
             }else{
                 let cartObj={
                     user:ObjectId(userId),
