@@ -83,22 +83,32 @@ module.exports = {
                     $match: { user: ObjectId(userId) }
                 },
                 {
+                    $unwind:'$products'
+                },
+                {
+                    $project:{
+                        item:'$products.item',
+                        quantity:"$products.quantity"
+                    }
+                },
+                // {
+                //     $lookup:{
+                //         from:collection.PRODUCT_COLLECTION,
+                //         localFeild:'item',
+                //         foreginFeild:'_id',
+                //         as:'products'
+                //     }
+                // }
+                {
                     $lookup: {
                         from: collection.PRODUCT_COLLECTION,
-                        let: { proList: '$products' },
-                        pipeline: [
-                            {
-                                $match: {
-                                    $expr: {
-                                        $in: ['$_id', '$$proList']
-                                    }
-                                }
-                            }
-                        ],
-                        as: 'cartItems'
+                        localFeild:'item',
+                        foreginFeild:'_id',
+                        as: 'products'
                     }
                 }
             ]).toArray()
+            console.log(cartItems[0].products);
             resolve(cartItems[0].cartItems)
         })
     },
