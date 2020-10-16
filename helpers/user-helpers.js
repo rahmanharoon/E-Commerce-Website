@@ -91,25 +91,17 @@ module.exports = {
                         quantity:"$products.quantity"
                     }
                 },
-                // {
-                //     $lookup:{
-                //         from:collection.PRODUCT_COLLECTION,
-                //         localFeild:'item',
-                //         foreginFeild:'_id',
-                //         as:'products'
-                //     }
-                // }
                 {
                     $lookup: {
                         from: collection.PRODUCT_COLLECTION,
                         localFeild:'item',
                         foreginFeild:'_id',
-                        as: 'products'
+                        as: 'product'
                     }
                 }
             ]).toArray()
-            console.log(cartItems[0].products);
-            resolve(cartItems[0].cartItems)
+            // console.log(cartItems[0].products);
+            resolve(cartItems)
         })
     },
     getCartCount: (userId) => {
