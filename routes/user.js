@@ -74,4 +74,10 @@ router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
   })
 })
 
+router.post('/change-product-quantity', (req,res,next)=>{
+  console.log(req.body);
+  userHelpers.changeProductQuantity(req.body),then(()=>{
+
+  })
+})
 module.exports = router;
