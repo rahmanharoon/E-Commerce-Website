@@ -91,14 +91,19 @@ module.exports = {
                         quantity:"$products.quantity"
                     }
                 },
-                // {
-                //     $lookup: {
-                //         from: collection.PRODUCT_COLLECTION,
-                //         localFeild:'item',
-                //         foreginFeild:'_id',
-                //         as: 'product'
-                //     }
-                // }
+                {
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localFeild:'item',
+                        foreginFeild:'_id',
+                        as: 'product'
+                    }
+                },
+                {
+                    $project:{
+                        item:1,quantity:1,product:{arrayElemAt:['product',0]}
+                    }
+                }
             ]).toArray()
             // console.log(cartItems[0].products);
             resolve(cartItems)
