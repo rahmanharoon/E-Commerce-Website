@@ -39,7 +39,7 @@ module.exports = {
     },
     addToCart: (proId, userId) => {
         let proObj = {
-            item: ObjectId(proId),
+            item: objectId(proId),
             quantity: 1
         }
         return new Promise(async (resolve, reject) => {
