@@ -3,7 +3,7 @@ var collection = require('../config/collections')
 const bcrypt = require('bcrypt')
 const { resolve } = require('path')
 const { response } = require('express')
-var ObjectId = require('mongodb').ObjectID
+var objectId = require('mongodb').ObjectID
 
 module.exports = {
     doSignup: (userData) => {
@@ -43,13 +43,13 @@ module.exports = {
             quantity: 1
         }
         return new Promise(async (resolve, reject) => {
-            let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: ObjectId(userId) })
+            let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: objectId(userId) })
             if (userCart) {
                 let proExist = userCart.products.findIndex(products => products.item === proId)
                 console.log(proExist);
                 if (proExist != -1) {
                     db.get().collection(collection.CART_COLLECTION)
-                        .updateOne({ user:ObjectId(userId),'products.item': ObjectId(proId) },
+                        .updateOne({ user:objectId(userId),'products.item': objectId(proId) },
                             {
                                 $inc: { 'products.$.quantity': 1 }
                             }
@@ -58,7 +58,7 @@ module.exports = {
                         })
                 } else {
                     db.get().collection(collection.CART_COLLECTION).
-                        updateOne({ user: ObjectId(userId) },
+                        updateOne({ user: objectId(userId) },
                             {
                                 $push: { products: proObj }
                             }
@@ -68,7 +68,7 @@ module.exports = {
                 }
             } else {
                 let cartObj = {
-                    user: ObjectId(userId),
+                    user: objectId(userId),
                     products: [proObj]
                 }
                 db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((response) => {
@@ -81,7 +81,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let cartItems = await db.get().collection(collection.CART_COLLECTION).aggregate([
                 {
-                    $match: { user: ObjectId(userId) }
+                    $match: { user: objectId(userId) }
                 },
                 {
                     $unwind:'$products'
@@ -114,7 +114,7 @@ module.exports = {
     getCartCount: (userId) => {
         return new Promise(async (resolve, reject) => {
             let count = 0
-            let cart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: ObjectId(userId) })
+            let cart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: objectId(userId) })
             if (cart) {
                 count = cart.products.length
             }
@@ -128,9 +128,9 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             if(details.count==-1 && details.quantity==1){
             db.get().collection(collection.CART_COLLECTION)
-            .updateOne({ _id:ObjectId(details.cart)},
+            .updateOne({ _id:objectId(details.cart)},
                 {
-                    $pull:{products:{item:ObjectId(details.product) }},
+                    $pull:{products:{item:objectId(details.products) }},
                      $inc: { 'products.$.quantity': details.count }
                 }
             ).then((response)=>{
@@ -139,7 +139,7 @@ module.exports = {
             })
         }else{
             db.get().collection(collection.CART_COLLECTION)
-            .updateOne({_id:ObjectId(details.cart), 'products.item':ObjectId(details.product)},
+            .updateOne({_id:objectId(details.cart), 'products.item':objectId(details.products)},
             {
                 $inc:{'products.$.quantity':details.count}
             }).then((response)=>{
