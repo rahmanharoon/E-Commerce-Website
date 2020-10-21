@@ -12,13 +12,13 @@
                 {{#each products}}
                 <tr>
                     
-                    <td><img style="width: 70px; height:70px" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
-                    <td>{{this.product.Name}}</td>
+                    <td><img style="width: 70px; height:70px" src="/product-images/{{this.products._id}}.jpg" alt=""></td>
+                    <td>{{this.products.Name}}</td>
                     
                     <td>
-                        <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
-                        <span id="{{this.product._id}}">{{this.quantity}}</span>
-                        <button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button>
+                        <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.products._id}}',-1)">-</button>
+                        <span id="{{this.products._id}}">{{this.quantity}}</span>
+                        <button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.products._id}}',1)">+</button>
                     </td>
                     <td>
                         <a href="" class="btn btn-danger">Remove</a>

@@ -45,7 +45,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let userCart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: ObjectId(userId) })
             if (userCart) {
-                let proExist = userCart.products.findIndex(product => product.item === proId)
+                let proExist = userCart.products.findIndex(products => products.item === proId)
                 console.log(proExist);
                 if (proExist != -1) {
                     db.get().collection(collection.CART_COLLECTION)
@@ -86,28 +86,29 @@ module.exports = {
                 {
                     $unwind:'$products'
                 },
-                {
-                    $project:{
-                        item:'$products.item',
-                        quantity:"$products.quantity"
-                    }
-                } ,
-                {
-                    $lookup: {
-                        from: collection.PRODUCT_COLLECTION,
-                        localField:'item',
-                        foreignField:'_id',
-                        as: 'product'
-                    }
-                },
-                {
-                    $project:{
-                        item:1,quantity:1,product:{arrayElemAt:['product',0]}
-                    }
-                }
+                // {
+                //     $project:{
+                //         item:'$products.item',
+                //         quantity:"$products.quantity"
+                //     }
+                // } ,
+                // {
+                //     $lookup: {
+                //         from: collection.PRODUCT_COLLECTION,
+                //         localField:'item',
+                //         foreignField:'_id',
+                //         as: 'product'
+                //     }
+                // },
+                // {
+                //     $project:{
+                //         item:1,quantity:1,product:{arrayElemAt:['product',0]}
+                //     }
+                // }
             ]).toArray()
-             console.log(cartItems[0].products);
-            resolve(cartItems)
+            console.log(cartItems);
+              console.log(cartItems[0].products);
+            resolve(cartItems[0].cartItems)
         })
     },
     getCartCount: (userId) => {
