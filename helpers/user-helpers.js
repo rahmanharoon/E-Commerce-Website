@@ -183,7 +183,7 @@ module.exports = {
                         _id:null,
                         total:{
                             $sum:{
-                                $multiply:['$quantity','$product.Price']
+                                $multiply:[{$toInt:'$quantity'},{$toInt:'$product.Price'}]
                             }
                         }
                     }
