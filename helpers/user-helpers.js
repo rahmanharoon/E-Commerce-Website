@@ -3,6 +3,7 @@ var collection = require('../config/collections')
 const bcrypt = require('bcrypt')
 const { resolve } = require('path')
 const { response } = require('express')
+const { rejects } = require('assert')
 var objectId = require('mongodb').ObjectID
 
 module.exports = {
@@ -191,6 +192,18 @@ module.exports = {
             ]).toArray()
             console.log(total);
             resolve(total[0].total)
+        })
+    },
+    placeOrder:(order,products,total)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(order,products,total);
+        })
+    },
+    getCartProductList:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+         let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
+         console.log(cart);
+         resolve(cart.products)
         })
     }
 }
