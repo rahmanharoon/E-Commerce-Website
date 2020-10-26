@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { resolve } = require('path')
 const { response } = require('express')
 const { rejects } = require('assert')
+const { resolve6 } = require('dns')
 var objectId = require('mongodb').ObjectID
 
 module.exports = {
@@ -198,6 +199,20 @@ module.exports = {
         return new Promise((resolve,reject)=>{
             console.log(order,products,total);
             let status = order.payment-method==='COD'?'placed':'pending'
+            let orderObj = {
+                deliveryDetails:{
+                    mobile:order.mobile,
+                    address:order.address,
+                    pincode:order.pincode
+                },
+                userId:objectId(order.userId),
+                paymentMethod:order.payment-method,
+                products:products,
+                status:status
+            }
+            db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+                resolve()
+            })
         })
     },
     getCartProductList:(userId)=>{
