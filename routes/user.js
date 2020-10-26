@@ -85,5 +85,8 @@ router.get('/place-order',verifyLogin, async(req,res)=>{
   let total = await userHelpers.getTotalAmount(req.session.user._id)
   res.render('user/place-order',{total,user:req.session.user})
 })
+router.post('/place-order',(req,res)=>{
+  console.log(req.body);
+})
 
 module.exports = router;
