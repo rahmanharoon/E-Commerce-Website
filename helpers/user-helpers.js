@@ -197,6 +197,7 @@ module.exports = {
     placeOrder:(order,products,total)=>{
         return new Promise((resolve,reject)=>{
             console.log(order,products,total);
+            let status = order.payment-method==='COD'?'placed':'pending'
         })
     },
     getCartProductList:(userId)=>{
