@@ -212,13 +212,14 @@ module.exports = {
                 status:status
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+                db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(userId)})
                 resolve()
             })
         })
     },
     getCartProductList:(userId)=>{
         return new Promise(async(resolve,reject)=>{
-         let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
+         let cart = await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(order.userId)})
          console.log(cart);
          resolve(cart.products)
         })
