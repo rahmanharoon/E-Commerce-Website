@@ -198,7 +198,7 @@ module.exports = {
     placeOrder:(order,products,total)=>{
         return new Promise((resolve,reject)=>{
             console.log(order,products,total);
-            let status = order.payment-method==='COD'?'placed':'pending'
+            let status = order['payment-method']==='COD'?'placed':'pending'
             let orderObj = {
                 deliveryDetails:{
                     mobile:order.mobile,
@@ -206,7 +206,7 @@ module.exports = {
                     pincode:order.pincode
                 },
                 userId:objectId(order.userId),
-                paymentMethod:order.payment-method,
+                paymentMethod:order['payment-method'],
                 products:products,
                 status:status
             }
