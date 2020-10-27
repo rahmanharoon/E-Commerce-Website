@@ -94,5 +94,7 @@ router.post('/place-order',async(req,res)=>{
   })
   console.log(req.body);
 })
-
+router.get('/order-success',(req,res)=>{
+  res.render('user/order-succes',{user:req.session.user})
+})
 module.exports = router;
