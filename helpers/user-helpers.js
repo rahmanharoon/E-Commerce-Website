@@ -261,17 +261,10 @@ module.exports = {
                         quantity:1,
                         product:{$arrayElemAt:['$product',0]}
                     }
-                },
-                {
-                    $project:{
-                        item:1,
-                        quantity:1,
-                        product:{$arrayElemAt:['$product',0]}
-                    }
                 }
             ]).toArray()
             console.log(orderItems);
             resolve(orderItems)
-        })
+        })       
     }
 }
