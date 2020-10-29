@@ -236,7 +236,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let orderItems = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
-                    $match: { user: objectId(orderId) }
+                    $match: { _id: objectId(orderId) }
                 },
                 {
                     $unwind:'$products'
