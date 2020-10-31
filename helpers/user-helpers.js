@@ -1,11 +1,12 @@
 var db = require('../config/connection')
 var collection = require('../config/collections')
 const bcrypt = require('bcrypt')
-const { resolve } = require('path')
 const { response } = require('express')
-const { rejects } = require('assert')
-const { resolve6 } = require('dns')
 var objectId = require('mongodb').ObjectID
+var instance = new Razorpay({
+    key_id: 'rzp_test_3NKpUutDXUvrJM',
+    key_secret: '0NrsxCwT1l1bx3ORnAJMVI5V',
+});
 
 module.exports = {
     doSignup: (userData) => {
@@ -214,7 +215,7 @@ module.exports = {
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
                 db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(order.userId)})
-                resolve()
+                resolve(response.ops[0]._id)
             })
         })
     },
@@ -266,5 +267,10 @@ module.exports = {
             console.log(orderItems);
             resolve(orderItems)
         })       
+    },
+    generateRazorpay:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            
+        })
     }
 }
