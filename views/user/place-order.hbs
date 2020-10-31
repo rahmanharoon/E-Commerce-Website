@@ -40,7 +40,7 @@
         </form>
     </div>
 </section>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
     $("#checkout-form").submit((e) => {
         e.preventDefault()
@@ -50,7 +50,7 @@
             data: $('#checkout-form').serialize(),
             success: (response) => {
                 alert(response)
-                if (response.status) {
+                if (response.codSuccess) {
                     location.href = '/order-success'
                 } else {
                     razorpayPayment(response)
@@ -58,7 +58,7 @@
             }
         })
     })
-    function(order) {
+    function razorpayPayment(order) {
         var options = {
             "key": "rzp_test_3NKpUutDXUvrJM", // Enter the Key ID generated from the Dashboard
             "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -93,7 +93,8 @@
             data:{
                 payment,
                 order
-            }
+            },
+            method:'post'
         })
     }
 </script>
