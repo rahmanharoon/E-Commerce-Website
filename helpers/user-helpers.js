@@ -3,6 +3,9 @@ var collection = require('../config/collections')
 const bcrypt = require('bcrypt')
 const { response } = require('express')
 var objectId = require('mongodb').ObjectID
+const Razorpay = require('razorpay')
+const { resolve6 } = require('dns')
+
 var instance = new Razorpay({
     key_id: 'rzp_test_3NKpUutDXUvrJM',
     key_secret: '0NrsxCwT1l1bx3ORnAJMVI5V',
@@ -268,9 +271,21 @@ module.exports = {
             resolve(orderItems)
         })       
     },
-    generateRazorpay:(orderId)=>{
+    generateRazorpay:(orderId,total)=>{
         return new Promise((resolve,reject)=>{
-            
+            var options = {
+                amount: total,
+                currency: "INR",
+                receipt: "New order:"+orderId 
+            };
+            instance.orders.create(options, function(err, order){
+                if(err){
+                    console.log(err);
+                }else{
+                console.log("New order:",order);
+                resolve(order)
+                }
+            });
         })
     }
 }
