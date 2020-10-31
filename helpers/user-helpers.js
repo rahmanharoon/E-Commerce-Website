@@ -276,7 +276,7 @@ module.exports = {
             var options = {
                 amount: total,
                 currency: "INR",
-                receipt: "New order:"+orderId 
+                receipt: ""+orderId 
             };
             instance.orders.create(options, function(err, order){
                 if(err){
