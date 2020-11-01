@@ -119,7 +119,7 @@ router.post('/verify-payment', (req, res) => {
     })
   }).catch((err) => {
     console.log(err);
-    res.json({ status: 'Payment Failed' })
+    res.json({ status:false,errMsg:'Failed' })
   })
 })
 
