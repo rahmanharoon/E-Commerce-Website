@@ -275,7 +275,7 @@ module.exports = {
     generateRazorpay:(orderId,total)=>{
         return new Promise((resolve,reject)=>{
             var options = {
-                amount: total,
+                amount: total * 100,
                 currency: "INR",
                 receipt: ""+orderId 
             };
