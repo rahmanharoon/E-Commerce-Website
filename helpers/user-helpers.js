@@ -5,6 +5,7 @@ const { response } = require('express')
 var objectId = require('mongodb').ObjectID
 const Razorpay = require('razorpay')
 const { resolve6 } = require('dns')
+const { resolve } = require('path')
 
 var instance = new Razorpay({
     key_id: 'rzp_test_3NKpUutDXUvrJM',
@@ -287,5 +288,19 @@ module.exports = {
                 }
             });
         })
+    },
+    verifyPayment:(details)=>{
+        return new Promise((resolve,reject)=>{
+            const crypto = require('crypto');
+            const  hmac = crypto.createHmac('sha256','0NrsxCwT1l1bx3ORnAJMVI5V')
+            hmac.update(details['payment[razorpay_order_id]']+'|'+details['payment[razorpay_payment_id]']);
+            hmac=hmac.digest('hex')
+            if(hmac==details['payment[razorpay_signature]']){
+                resolve()
+            }else{
+                reject()
+            }
+        })
     }
+    
 }
