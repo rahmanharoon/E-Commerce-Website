@@ -12,6 +12,15 @@ router.get('/', function(req, res, next) {
   })
   
 });
+router.get('/login', (req, res) => {
+  if (req.session.admin) {
+    res.redirect('/')
+  } else {
+    res.render('user/login', { "loginErr": req.session.userlogErr })
+    req.session.adminlogErr = false
+
+  }
+})
 router.get('/add-product',function(req,res){
   res.render('admin/add-product')
 })
