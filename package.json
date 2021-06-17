@@ -1,0 +1,35 @@
+{
+  "name": "shoppingcart-project",
+  "version": "1.0.0",
+  "description": "Dynamic website made by using Node.js/ express/ express-hbs/ bootstrap/ MongoDB",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "fileupload": "^1.0.0",
+    "hbs": "^4.1.1",
+    "http-errors": "^1.8.0",
+    "mongodb": "^3.6.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.5",
+    "razorpay": "^2.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahmanharoon/E-Commerce-Website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahmanharoon/E-Commerce-Website/issues"
+  },
+  "homepage": "https://github.com/rahmanharoon/E-Commerce-Website#readme"
+}
