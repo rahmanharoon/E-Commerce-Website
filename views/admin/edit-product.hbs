@@ -2,13 +2,11 @@
     <div class="container mt-4">
     <div class="row">
 
-
         <div class="col-md-6">
             <h2 class="text-center">Edit Product</h2>
             <form action="/admin/edit-product/{{product._id}}" method="POST" enctype="multipart/form-data">
                 <label for="">Name</label>
                 <input type="text" name="Name" class="form-control" value="{{product.Name}}" placeholder="Enter the Item Name"> 
-
 
                 <label for="">Category</label>
                 <input type="text" name="Category" class="form-control" value="{{product.Category}}" placeholder="Enter Product Category" >
@@ -22,7 +20,6 @@
                 <label for="">Image</label>
                 <img src="/product-images/{{product._id}}.jpg" style="width: 100px; height: 100px;" alt="" id="imgView" class="pt-3">
                 <input type="file" name="Images" class="form-control" onchange="viewImage(event)">
-
 
                 <button type="submit" class="btn btn-succes mt-4">Submit</button>
             </form>

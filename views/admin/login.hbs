@@ -3,20 +3,33 @@
     <div class="container mt-5 pl-5">
       <h2 class="text-center">Login</h2>
       <form action="/login" method="POST">
-      {{#if logErr}}
-        <p class="error">{{logErr}}</p>
-      {{/if}}  
+        {{#if logErr}}
+          <p class="error">{{logErr}}</p>
+        {{/if}}
         <label>E-Mail Address</label>
-        <input type="email" class="form-control" placeholder="Enter your E-mail" name="email">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter your E-mail"
+          name="email"
+        />
 
         <label>Password</label>
-        <input type="password" placeholder="Enter Password" name="password" class="form-control">
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="password"
+          class="form-control"
+        />
 
-        <button type="submit" class="btn btn-primary mt-2 float-right">Login</button>
+        <button
+          type="submit"
+          class="btn btn-primary mt-2 float-right"
+        >Login</button>
         <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember Me
+          <input type="checkbox" checked="checked" name="remember" />
+          Remember Me
         </label><br />
-
 
         <a href="/signup" class="mt-6"> Create New Account!!</a>
       </form>
